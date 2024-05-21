@@ -15,7 +15,7 @@ public class PostBuildScript
             return;
         }
 
-        string dropboxPath = "/path/in/dropbox/build.zip";
+        string dropboxPath = "/builds/build.zip";
         string localFilePath = pathToBuiltProject;
 
         Process process = new Process();
