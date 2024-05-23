@@ -1,8 +1,7 @@
 name: Upload APK to Dropbox
 
 on:
-  workflow_dispatch: # This allows manual triggering
-  repository_dispatch: # This listens for external events
+  repository_dispatch:
     types: [unity_build_completed]
 
 jobs:
@@ -15,7 +14,7 @@ jobs:
 
     - name: Download APK from Unity Cloud Build
       run: |
-        curl -o DefaultAndroid.apk ${{ secrets.UNITY_APK_URL }}
+        curl -o DefaultAndroid.apk ${{ github.event.client_payload.apk_url }}
 
     - name: Upload to Dropbox
       run: |
