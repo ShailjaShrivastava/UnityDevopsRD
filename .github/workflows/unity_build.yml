@@ -1,0 +1,25 @@
+name: Upload APK to Dropbox
+
+on:
+  workflow_dispatch: # This allows manual triggering
+  repository_dispatch: # This listens for external events
+    types: [unity_build_completed]
+
+jobs:
+  upload_apk:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download APK from Unity Cloud Build
+      run: |
+        curl -o DefaultAndroid.apk ${{ secrets.UNITY_APK_URL }}
+
+    - name: Upload to Dropbox
+      run: |
+        python3 upload_to_dropbox.py
+      env:
+        DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+        DROPBOX_DEST_PATH: '/path/to/upload/DefaultAndroid.apk'
