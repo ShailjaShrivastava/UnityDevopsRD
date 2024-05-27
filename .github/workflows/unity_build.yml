@@ -22,3 +22,4 @@ jobs:
       env:
         DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
         DROPBOX_DEST_PATH: '/path/to/upload/DefaultAndroid.apk'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
